@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "VT323", monospace;
+  --font-mono: "VT323", monospace;
+}
+
+body {
+  background-color: #050505;
+  color: #0ff;
+  font-family: 'VT323', monospace;
+  overflow-x: hidden;
+  text-transform: uppercase;
+}
+
+.glitch-text {
+  position: relative;
+  color: #fff;
+  display: inline-block;
+}
+.glitch-text::before, .glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #050505;
+}
+.glitch-text::before {
+  left: 3px;
+  text-shadow: -2px 0 #f0f;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+.glitch-text::after {
+  left: -3px;
+  text-shadow: -2px 0 #0ff;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(13px, 9999px, 96px, 0); }
+  20% { clip: rect(76px, 9999px, 23px, 0); }
+  40% { clip: rect(65px, 9999px, 45px, 0); }
+  60% { clip: rect(54px, 9999px, 23px, 0); }
+  80% { clip: rect(23px, 9999px, 67px, 0); }
+  100% { clip: rect(67px, 9999px, 34px, 0); }
+}
+@keyframes glitch-anim-2 {
+  0% { clip: rect(65px, 9999px, 100px, 0); }
+  20% { clip: rect(67px, 9999px, 61px, 0); }
+  40% { clip: rect(23px, 9999px, 98px, 0); }
+  60% { clip: rect(30px, 9999px, 16px, 0); }
+  80% { clip: rect(47px, 9999px, 73px, 0); }
+  100% { clip: rect(38px, 9999px, 49px, 0); }
+}
+
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.25));
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.crt-flicker {
+  animation: flicker 0.12s infinite;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 255, 255, 0.03);
+  z-index: 49;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+.brutal-border {
+  border: 2px solid #0ff;
+  box-shadow: 4px 4px 0px #f0f;
+}
+.brutal-border-alt {
+  border: 2px solid #f0f;
+  box-shadow: -4px 4px 0px #0ff;
+}
